@@ -1,18 +1,19 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using API_IntegracaoMSI.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_IntegracaoMSI.Context;
+namespace API_IntegracaoMSI.Models;
 
-public class CotacaoContext : DbContext
+public partial class MeuContexto : DbContext
 {
-    private readonly IConfiguration _configuration;
-    public CotacaoContext(DbContextOptions<CotacaoContext> options, IConfiguration configuration) : base(options)
+    public MeuContexto()
     {
-        _configuration = configuration;
+    }
+
+    public MeuContexto(DbContextOptions<MeuContexto> options)
+        : base(options)
+    {
     }
 
     public virtual DbSet<MsiCotacao> MsiCotacaos { get; set; }
@@ -38,6 +39,7 @@ public class CotacaoContext : DbContext
     public virtual DbSet<MsiCotacaoVeiculo> MsiCotacaoVeiculos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

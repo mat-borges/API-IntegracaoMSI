@@ -22,7 +22,7 @@ namespace API_IntegracaoMSI.Controllers
             return Ok(obj);
         }
 
-        [HttpGet("Apresentar/{nome}")]
+        [HttpGet("Apresentar/nome")]
         public IActionResult Apresentar(string nome)
         {
             var mensagem = $"Olá {nome}, seja bem vindo!";

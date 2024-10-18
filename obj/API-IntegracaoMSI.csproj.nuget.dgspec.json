@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI\\API-IntegracaoMSI.csproj": {}
+    "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI-NetCore\\API-IntegracaoMSI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI\\API-IntegracaoMSI.csproj": {
+    "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI-NetCore\\API-IntegracaoMSI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI\\API-IntegracaoMSI.csproj",
+        "projectUniqueName": "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI-NetCore\\API-IntegracaoMSI.csproj",
         "projectName": "API-IntegracaoMSI",
-        "projectPath": "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI\\API-IntegracaoMSI.csproj",
+        "projectPath": "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI-NetCore\\API-IntegracaoMSI.csproj",
         "packagesPath": "C:\\Users\\mateus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI\\obj\\",
+        "outputPath": "C:\\Users\\mateus\\Desktop\\Mateus\\Jobs\\API\\API-IntegracaoMSI-NetCore\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -54,15 +54,21 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.8, )"
+              "version": "[8.0.10, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.10, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
