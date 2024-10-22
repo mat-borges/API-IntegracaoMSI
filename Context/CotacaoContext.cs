@@ -38,10 +38,18 @@ public class CotacaoContext : DbContext
     public virtual DbSet<MsiCotacaoVeiculo> MsiCotacaoVeiculos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseSqlServer("");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            var connectionString = _configuration.GetConnectionString("ConexaoLocal");
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
 
         modelBuilder.Entity<MsiCotacao>(entity =>
@@ -161,9 +169,5 @@ public class CotacaoContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_MSI_CotacaoVeiculo_MSI_Cotacao");
         });
-
-        OnModelCreatingPartial(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
