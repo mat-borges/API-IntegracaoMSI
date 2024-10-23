@@ -1,0 +1,48 @@
+# Diretórios de build
+bin/
+obj/
+out/
+
+# Diretórios de configuração do Visual Studio
+.vs/
+.vscode/
+*.sln.ide
+
+# Diretórios e arquivos de cache
+*.user
+*.suo
+*.sln.ide
+*.cache
+*.pdb
+
+# Arquivos de log
+*.log
+
+# Configurações de publicação
+publish/
+
+# Arquivos de configuração do Rider
+.idea/
+
+# Dependências de pacotes
+packages/
+*.nupkg
+
+# Arquivos de configuração do Azure
+*.Publish.xml
+
+# Diretórios de testes
+TestResults/
+*.trx
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Configurações do projeto
+project.lock.json
+project.fragment.lock.json
+
+# Outros arquivos e pastas a serem ignorados
+appsettings*.json  # Ignorar arquivos de configuração sensíveis
+*.db               # Ignorar bancos de dados locais
