@@ -1,4 +1,6 @@
-using API_IntegracaoMSI.Context;
+using API_IntegracaoMSI.Contexts.Cotacao;
+using API_IntegracaoMSI.Repositories.Cotacao;
+using API_IntegracaoMSI.Services.Cotacao;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<CotacaoContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"))
 );
+
+builder.Services.AddScoped<CotacaoRepository>(); // Registro do CotacaoRepository
+builder.Services.AddScoped<CotacaoService>(); // Registro do CotacaoService
+
+builder.Services.AddScoped<CotacaoSeguradoRepository>(); // Registro do CotacaoSeguradoRepository
+builder.Services.AddScoped<CotacaoSeguradoService>(); // Registro do CotacaoSeguradoService
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

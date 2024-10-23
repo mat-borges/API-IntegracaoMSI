@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_IntegracaoMSI.Entities;
+namespace API_IntegracaoMSI.Entities.Cotacao;
 
 [Table("MSI_CotacaoSeguradoRelacao")]
 public partial class MsiCotacaoSeguradoRelacao

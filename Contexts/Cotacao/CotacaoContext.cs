@@ -1,22 +1,17 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using API_IntegracaoMSI.Entities;
+using System.Linq;
+using System.Threading.Tasks;
+using API_IntegracaoMSI.Entities.Cotacao;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_IntegracaoMSI.Models;
+namespace API_IntegracaoMSI.Contexts.Cotacao;
 
-public partial class MeuContexto : DbContext
+public class CotacaoContext(DbContextOptions<CotacaoContext> options, IConfiguration configuration) : DbContext(options)
 {
-    public MeuContexto()
-    {
-    }
+    private readonly IConfiguration _configuration = configuration;
 
-    public MeuContexto(DbContextOptions<MeuContexto> options)
-        : base(options)
-    {
-    }
-
-    public virtual DbSet<MsiCotacao> MsiCotacaos { get; set; }
+    public virtual DbSet<MsiCotacao> MsiCotacoes { get; set; }
 
     public virtual DbSet<MsiCotacaoEndereco> MsiCotacaoEnderecos { get; set; }
 
@@ -39,11 +34,18 @@ public partial class MeuContexto : DbContext
     public virtual DbSet<MsiCotacaoVeiculo> MsiCotacaoVeiculos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("");
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            var connectionString = _configuration.GetConnectionString("ConexaoLocal");
+            optionsBuilder.UseSqlServer(connectionString);
+        }
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.UseCollation("SQL_Latin1_General_CP1_CI_AS");
 
         modelBuilder.Entity<MsiCotacao>(entity =>
@@ -69,9 +71,9 @@ public partial class MeuContexto : DbContext
             entity.Property(e => e.Observacoes).HasDefaultValue("");
             entity.Property(e => e.SiteOrigem).HasDefaultValue("");
 
-            entity.HasOne(d => d.CotacaoOrigem).WithMany(p => p.MsiCotacaos).HasConstraintName("FK_MSI_Cotacao_MSI_Cotacao");
+            entity.HasOne(d => d.CotacaoOrigem).WithMany(p => p.MsiCotacoes).HasConstraintName("FK_MSI_Cotacao_MSI_Cotacao");
 
-            entity.HasOne(d => d.CotacaoStatus).WithMany(p => p.MsiCotacaos)
+            entity.HasOne(d => d.CotacaoStatus).WithMany(p => p.MsiCotacoes)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_MSI_Cotacao_MSI_CotacaoStatus");
         });
@@ -163,9 +165,5 @@ public partial class MeuContexto : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_MSI_CotacaoVeiculo_MSI_Cotacao");
         });
-
-        OnModelCreatingPartial(modelBuilder);
     }
-
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

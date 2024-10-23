@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_IntegracaoMSI.Entities;
+namespace API_IntegracaoMSI.Entities.Cotacao;
 
 [Table("MSI_CotacaoStatus")]
 public partial class MsiCotacaoStatus
@@ -53,5 +53,5 @@ public partial class MsiCotacaoStatus
     public decimal? LimiteMaximoParaRenovarDataExpiracaoEmMinutos { get; set; }
 
     [InverseProperty("CotacaoStatus")]
-    public virtual ICollection<MsiCotacao> MsiCotacaos { get; set; } = new List<MsiCotacao>();
+    public virtual ICollection<MsiCotacao> MsiCotacoes { get; set; } = new List<MsiCotacao>();
 }

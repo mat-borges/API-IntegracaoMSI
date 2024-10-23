@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_IntegracaoMSI.Entities;
+namespace API_IntegracaoMSI.Entities.Cotacao;
 
 [Table("MSI_CotacaoOrigem")]
 public partial class MsiCotacaoOrigem
@@ -31,5 +31,5 @@ public partial class MsiCotacaoOrigem
     public bool ExibirNoControleDeRetornos { get; set; }
 
     [InverseProperty("CotacaoOrigem")]
-    public virtual ICollection<MsiCotacao> MsiCotacaos { get; set; } = new List<MsiCotacao>();
+    public virtual ICollection<MsiCotacao> MsiCotacoes { get; set; } = new List<MsiCotacao>();
 }
