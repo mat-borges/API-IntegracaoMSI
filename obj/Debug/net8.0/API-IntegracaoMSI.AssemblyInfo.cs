@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("API-IntegracaoMSI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17e6e077d8add4da71ca962309330f3a8cf7f6e9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b477a59851447eda170496c412546ded3ef6832d")]
 [assembly: System.Reflection.AssemblyProductAttribute("API-IntegracaoMSI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("API-IntegracaoMSI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
