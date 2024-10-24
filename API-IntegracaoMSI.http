@@ -1,0 +1,6 @@
+@API_IntegracaoMSI_HostAddress = http://localhost:5188
+
+GET {{API_IntegracaoMSI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
