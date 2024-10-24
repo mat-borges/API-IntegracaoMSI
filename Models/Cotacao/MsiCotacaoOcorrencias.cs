@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_IntegracaoMSI.Entities.Cotacao;
+namespace API_IntegracaoMSI.Models.Cotacao;
 
 [Table("MSI_CotacaoOcorrencia")]
-public partial class MsiCotacaoOcorrencium
+public partial class MsiCotacaoOcorrencias
 {
     [Key]
     [Column("OcorrenciaID")]
@@ -29,6 +29,6 @@ public partial class MsiCotacaoOcorrencium
     public bool Manual { get; set; }
 
     [ForeignKey("CotacaoId")]
-    [InverseProperty("MsiCotacaoOcorrencia")]
+    [InverseProperty("CotacaoOcorrencia")]
     public virtual MsiCotacao Cotacao { get; set; }
 }

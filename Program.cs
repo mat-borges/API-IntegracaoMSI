@@ -7,7 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<CotacaoContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"))
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoLocal"),
+        sqlServerOptions => sqlServerOptions.EnableRetryOnFailure())
 );
 
 builder.Services.AddScoped<CotacaoRepository>(); // Registro do CotacaoRepository

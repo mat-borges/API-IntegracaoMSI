@@ -1,5 +1,5 @@
 using API_IntegracaoMSI.Contexts.Cotacao;
-using API_IntegracaoMSI.Entities.Cotacao;
+using API_IntegracaoMSI.Models.Cotacao;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;

@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using API_IntegracaoMSI.Entities.Cotacao;
+using API_IntegracaoMSI.Models.Cotacao;
+using API_IntegracaoMSI.Models.Geral;
 using Microsoft.EntityFrameworkCore;
 
 namespace API_IntegracaoMSI.Contexts.Cotacao;
@@ -17,7 +18,7 @@ public class CotacaoContext(DbContextOptions<CotacaoContext> options, IConfigura
 
     public virtual DbSet<MsiCotacaoMarcaModeloVeiculo> MsiCotacaoMarcaModeloVeiculos { get; set; }
 
-    public virtual DbSet<MsiCotacaoOcorrencium> MsiCotacaoOcorrencia { get; set; }
+    public virtual DbSet<MsiCotacaoOcorrencias> MsiCotacaoOcorrencia { get; set; }
 
     public virtual DbSet<MsiCotacaoOrigem> MsiCotacaoOrigems { get; set; }
 
@@ -32,6 +33,8 @@ public class CotacaoContext(DbContextOptions<CotacaoContext> options, IConfigura
     public virtual DbSet<MsiCotacaoStatus> MsiCotacaoStatuses { get; set; }
 
     public virtual DbSet<MsiCotacaoVeiculo> MsiCotacaoVeiculos { get; set; }
+
+    public virtual DbSet<MsiFilial> MsiFilial { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -76,13 +79,19 @@ public class CotacaoContext(DbContextOptions<CotacaoContext> options, IConfigura
             entity.HasOne(d => d.CotacaoStatus).WithMany(p => p.MsiCotacoes)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_MSI_Cotacao_MSI_CotacaoStatus");
+
+            entity.HasOne(d => d.Filial)
+                .WithMany(p => p.Cotacao)
+                .HasForeignKey(d => d.FilialOrigemId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_MSI_Cotacao_WP_Filial");
         });
 
-        modelBuilder.Entity<MsiCotacaoOcorrencium>(entity =>
+        modelBuilder.Entity<MsiCotacaoOcorrencias>(entity =>
         {
             entity.HasIndex(e => new { e.CotacaoId, e.OcorrenciaId }, "_dta_index_MSI_CotacaoOcorrencia_45_2117686692__K2_K1_3_5_6").HasFillFactor(80);
 
-            entity.HasOne(d => d.Cotacao).WithMany(p => p.MsiCotacaoOcorrencia)
+            entity.HasOne(d => d.Cotacao).WithMany(p => p.CotacaoOcorrencia)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_MSI_CotacaoOcorrencia_MSI_Cotacao");
         });
@@ -116,7 +125,7 @@ public class CotacaoContext(DbContextOptions<CotacaoContext> options, IConfigura
             entity.Property(e => e.TelefonePrincipal).HasDefaultValue("");
             entity.Property(e => e.TelefoneResidencial).HasDefaultValue("");
 
-            entity.HasOne(d => d.Cotacao).WithMany(p => p.MsiCotacaoSegurados)
+            entity.HasOne(d => d.Cotacao).WithMany(p => p.CotacaoSegurados)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_MSI_CotacaoSegurado_MSI_Cotacao");
 
@@ -135,7 +144,7 @@ public class CotacaoContext(DbContextOptions<CotacaoContext> options, IConfigura
 
             entity.Property(e => e.QuantosSinistros).HasDefaultValue(0);
 
-            entity.HasOne(d => d.Cotacao).WithMany(p => p.MsiCotacaoSeguros)
+            entity.HasOne(d => d.Cotacao).WithMany(p => p.CotacaoSeguros)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_MSI_CotacaoSeguro_MSI_Cotacao");
         });
@@ -161,7 +170,7 @@ public class CotacaoContext(DbContextOptions<CotacaoContext> options, IConfigura
             entity.Property(e => e.Marca).HasDefaultValue("");
             entity.Property(e => e.ValorBlindagem).HasDefaultValue(0m);
 
-            entity.HasOne(d => d.Cotacao).WithMany(p => p.MsiCotacaoVeiculos)
+            entity.HasOne(d => d.Cotacao).WithMany(p => p.CotacaoVeiculos)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_MSI_CotacaoVeiculo_MSI_Cotacao");
         });

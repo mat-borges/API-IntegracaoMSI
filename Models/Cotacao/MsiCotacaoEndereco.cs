@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_IntegracaoMSI.Entities.Cotacao;
+namespace API_IntegracaoMSI.Models.Cotacao;
 
 [Table("MSI_CotacaoEndereco")]
 public partial class MsiCotacaoEndereco
@@ -51,4 +51,8 @@ public partial class MsiCotacaoEndereco
     [StringLength(2)]
     [Unicode(false)]
     public string Estado { get; set; }
+
+    [ForeignKey("CotacaoId")]
+    [InverseProperty("CotacaoEndereco")]
+    public MsiCotacao Cotacao { get; set; }
 }

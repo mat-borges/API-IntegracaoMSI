@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_IntegracaoMSI.Entities.Cotacao;
+namespace API_IntegracaoMSI.Models.Cotacao;
 
 [Table("MSI_CotacaoVeiculo")]
 public partial class MsiCotacaoVeiculo
@@ -140,6 +140,6 @@ public partial class MsiCotacaoVeiculo
     public string UfPlaca { get; set; }
 
     [ForeignKey("CotacaoId")]
-    [InverseProperty("MsiCotacaoVeiculos")]
+    [InverseProperty("CotacaoVeiculos")]
     public virtual MsiCotacao Cotacao { get; set; }
 }

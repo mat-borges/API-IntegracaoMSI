@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace API_IntegracaoMSI.Entities.Cotacao;
+namespace API_IntegracaoMSI.Models.Cotacao;
 
 [Table("MSI_CotacaoSeguro")]
 public partial class MsiCotacaoSeguro
@@ -59,6 +59,6 @@ public partial class MsiCotacaoSeguro
     public int? CotacaoTipoMultiplosVeiculosQtdDiasSelecao { get; set; }
 
     [ForeignKey("CotacaoId")]
-    [InverseProperty("MsiCotacaoSeguros")]
+    [InverseProperty("CotacaoSeguros")]
     public virtual MsiCotacao Cotacao { get; set; }
 }
